@@ -3,157 +3,177 @@ jobs:
   build:
     docker:
       - image: microsoft/aspnetcore-build:2.0
-    working_directory: ~/banana
     steps:
       - checkout
-      - run:
-          name: Build Service
-          command: |        
-            dotnet publish banana/banana.csproj -c Release -o ../../app/out
-      - store_artifacts:
-          path: app/out
-      - persist_to_workspace:
-          root: ~/banana
-          paths:
-            - app/out
-  unit_tests:
-    machine:
-      enabled: true
-    steps:
-      - run:
-          name: Run unit tests
-          command: |
-            echo "Unit tests go here!"
-  integration_tests:
-    machine:
-      enabled: true
-    steps:
-      - run:
-          name: Run integration tests
-          command: |
-            echo "Integration tests go here!"
-  system_tests:
-    machine:
-      enabled: true
-    steps:
-      - run:
-          name: Run system tests
-          command: |
-            echo "System tests go here!"
-  contract_tests:
-    machine:
-      enabled: true
-    steps:
-      - run:
-          name: Run contract tests
-          command: |
-            echo "Contract tests go here!"
-  dockerise:
-    machine:
-      enabled: true
-    steps:
-      - attach_workspace:
-          at: ~/banana
-      - run:
-          name: Build Service Docker Image
-          command: |
-            echo DOCKERISE
-  dev_deploy:
+      - run: dotnet publish banana/banana.csproj -c Release -o ../../app/out
+  test:
     docker:
-      - image: microsoft/azure-cli
+      - image: microsoft/aspnetcore-build:2.0
     steps:
-      - attach_workspace:
-          at: ~/banana
-      - run:
-          name: Deploy DEVELOPMENT Environment
-          command: |
-            echo Deploy DEVELOPMENT 
-  test_deploy:
-    docker:
-      - image: microsoft/azure-cli
-    steps:
-      - attach_workspace:
-          at: ~/banana
-      - run:
-          name: Deploy TEST Environment
-          command: |
-            echo Deploy TEST 
-  acpt_deploy:
-    docker:
-      - image: microsoft/azure-cli
-    steps:
-      - attach_workspace:
-          at: ~/banana
-      - run:
-          name: Deploy ACCEPTANCE Environment
-          command: |
-            echo Deploy ACCEPTANCE  
-  prod_deploy:
-    docker:
-      - image: microsoft/azure-cli
-    steps:
-      - attach_workspace:
-          at: ~/banana
-      - run:
-          name: Deploy PRODUCTION Environment
-          command: |
-            echo Deploy PRODUCTION  
+      - checkout
+      - run: dotnet test banana/banana.csproj
 workflows:
   version: 2
-  ids_cd:
+  build_and_test:
     jobs:
-      - build:
-      - unit_tests:
-          requires:
-            - build
-      - integration_tests:
-          requires:
-            - build
-      - dockerise:
-          requires:
-            - unit_tests
-            - integration_tests
-      - dev_deploy:
-          requires:
-            - dockerise
-          # filters:
-          #   branches:
-          #     only: 
-          #       - /feature.*/
-          #       - develop
-          #       - /release.*/
-          #       - master
-      - system_tests:
-          requires:
-            - dev_deploy
-      - contract_tests:
-          requires:
-            - dev_deploy
-      - test_deploy:
-          requires:
-            - system_tests
-            - contract_tests
-          # filters:
-          #   branches:
-          #     only: 
-          #       - develop
-          #       - /release.*/
-          #       - master
-      - acpt_deploy:
-          requires:
-            - test_deploy
-          # filters:
-          #   branches:
-          #     only: 
-          #       - /release.*/
-          #       - master
-      - dockerise_prod:
-          requires:
-            - acpt_deploy
-      - prod_deploy:
-          requires:
-            - dockerise_prod
-          # filters:
-          #   branches:
-          #     only: 
-          #       - master
+      - build
+      - test
+# version: 2
+# jobs:
+#   build:
+#     docker:
+#       - image: microsoft/aspnetcore-build:2.0
+#     working_directory: ~/banana
+#     steps:
+#       - checkout
+#       - run:
+#           name: Build Service
+#           command: |
+#             dotnet publish banana/banana.csproj -c Release -o ../../app/out
+#       - store_artifacts:
+#           path: app/out
+#       - persist_to_workspace:
+#           root: ~/banana
+#           paths:
+#             - app/out
+#   unit_tests:
+#     machine:
+#       enabled: true
+#     steps:
+#       - run:
+#           name: Run unit tests
+#           command: |
+#             echo "Unit tests go here!"
+#   integration_tests:
+#     machine:
+#       enabled: true
+#     steps:
+#       - run:
+#           name: Run integration tests
+#           command: |
+#             echo "Integration tests go here!"
+#   system_tests:
+#     machine:
+#       enabled: true
+#     steps:
+#       - run:
+#           name: Run system tests
+#           command: |
+#             echo "System tests go here!"
+#   contract_tests:
+#     machine:
+#       enabled: true
+#     steps:
+#       - run:
+#           name: Run contract tests
+#           command: |
+#             echo "Contract tests go here!"
+#   dockerise:
+#     machine:
+#       enabled: true
+#     steps:
+#       - attach_workspace:
+#           at: ~/banana
+#       - run:
+#           name: Build Service Docker Image
+#           command: |
+#             echo DOCKERISE
+#   dev_deploy:
+#     docker:
+#       - image: microsoft/azure-cli
+#     steps:
+#       - attach_workspace:
+#           at: ~/banana
+#       - run:
+#           name: Deploy DEVELOPMENT Environment
+#           command: |
+#             echo Deploy DEVELOPMENT
+#   test_deploy:
+#     docker:
+#       - image: microsoft/azure-cli
+#     steps:
+#       - attach_workspace:
+#           at: ~/banana
+#       - run:
+#           name: Deploy TEST Environment
+#           command: |
+#             echo Deploy TEST
+#   acpt_deploy:
+#     docker:
+#       - image: microsoft/azure-cli
+#     steps:
+#       - attach_workspace:
+#           at: ~/banana
+#       - run:
+#           name: Deploy ACCEPTANCE Environment
+#           command: |
+#             echo Deploy ACCEPTANCE
+#   prod_deploy:
+#     docker:
+#       - image: microsoft/azure-cli
+#     steps:
+#       - attach_workspace:
+#           at: ~/banana
+#       - run:
+#           name: Deploy PRODUCTION Environment
+#           command: |
+#             echo Deploy PRODUCTION
+# workflows:
+#   version: 2
+#   ids_cd:
+#     jobs:
+#       - build:
+#       - unit_tests:
+#           requires:
+#             - build
+#       - integration_tests:
+#           requires:
+#             - build
+#       - dockerise:
+#           requires:
+#             - unit_tests
+#             - integration_tests
+#       - dev_deploy:
+#           requires:
+#             - dockerise
+#           # filters:
+#           #   branches:
+#           #     only:
+#           #       - /feature.*/
+#           #       - develop
+#           #       - /release.*/
+#           #       - master
+#       - system_tests:
+#           requires:
+#             - dev_deploy
+#       - contract_tests:
+#           requires:
+#             - dev_deploy
+#       - test_deploy:
+#           requires:
+#             - system_tests
+#             - contract_tests
+#           # filters:
+#           #   branches:
+#           #     only:
+#           #       - develop
+#           #       - /release.*/
+#           #       - master
+#       - acpt_deploy:
+#           requires:
+#             - test_deploy
+#           # filters:
+#           #   branches:
+#           #     only:
+#           #       - /release.*/
+#           #       - master
+#       - dockerise_prod:
+#           requires:
+#             - acpt_deploy
+#       - prod_deploy:
+#           requires:
+#             - dockerise_prod
+#           # filters:
+#           #   branches:
+#           #     only:
+#           #       - master
