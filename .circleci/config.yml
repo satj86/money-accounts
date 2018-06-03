@@ -13,13 +13,13 @@ jobs:
       - run:
           name: DOTNET TEST
           command: echo Tests go here.
-workflows:
-  sat_cd:
-    jobs:
-      - build
-          # filter:
-          #   branches:
-          #     only:
-          #       - develop
-          #       - /feature.*/
-      - test
+# workflows:
+#   sat_cd:
+#     jobs:
+#       - build
+#           # filter:
+#           #   branches:
+#           #     only:
+#           #       - develop
+#           #       - /feature.*/
+#       - test
