@@ -7,7 +7,19 @@ jobs:
       - checkout
       - run:
           name: Build
-          command: dotnet build banana\banana.csproj
+          command: dotnet build banana/banana.csproj
+  test:
+    steps:
       - run:
-          name: Print the Current Time
-          command: date
+          name: DOTNET TEST
+          command: echo Tests go here.
+workflows:
+  sat_cd:
+    jobs:
+      - build
+          # filter:
+          #   branches:
+          #     only:
+          #       - develop
+          #       - /feature.*/
+      - test
