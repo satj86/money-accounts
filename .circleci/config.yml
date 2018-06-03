@@ -18,6 +18,8 @@ workflows:
     jobs:
       - build
       - test
+        requires:
+          - build
 # version: 2
 # jobs:
 #   build:
