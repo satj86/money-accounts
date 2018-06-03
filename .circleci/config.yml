@@ -9,6 +9,8 @@ jobs:
           name: Build
           command: dotnet build banana/banana.csproj
   test:
+    machine:
+      enabled: true
     steps:
       - run:
           name: DOTNET TEST
