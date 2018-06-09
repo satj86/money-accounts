@@ -17,7 +17,9 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - test
+      - test:
+          requires:
+            - build
 # # # version: 2
 # # # jobs:
 # # #   build:
