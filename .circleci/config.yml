@@ -5,13 +5,11 @@ jobs:
       - image: microsoft/aspnetcore-build:2.0
     steps:
       - checkout
-      - run: echo build
   test:
     docker:
       - image: microsoft/aspnetcore-build:2.0
     steps:
       - checkout
-      - run: echo test
 workflows:
   version: 2
   build_and_test:
