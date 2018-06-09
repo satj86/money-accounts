@@ -5,13 +5,17 @@ jobs:
       - image: microsoft/aspnetcore-build:2.0
     steps:
       - checkout
-      - run: dotnet publish banana/banana.csproj -c Release -o ../../app/out
+      - run: 
+          name: Build
+          command: dotnet publish banana/banana.csproj -c Release -o ../../app/out
   test:
     docker:
       - image: microsoft/aspnetcore-build:2.0
     steps:
       - checkout
-      - run: dotnet test banana/banana.csproj
+      - run: 
+          name: Test
+          command: dotnet test banana/banana.csproj
 workflows:
   version: 2
   build_and_test:
