@@ -11,7 +11,9 @@ jobs:
       - image: microsoft/aspnetcore-build:2.0
     steps:
       - checkout
-      - run: dotnet test banana.tests/banana.tests.csproj
+      - command: |
+          dotnet test banana.tests/banana.tests.csproj -xml out.xml
+          cat out.xml
 workflows:
   version: 2
   build_and_test:
