@@ -14,8 +14,8 @@ jobs:
       - run:
           name: Test
           command: |
-            dotnet test banana.tests/banana.tests.csproj -xml out.xml
-            cat out.xml
+            dotnet test banana.tests/banana.tests.csproj -logger "trx;LogFileName=out.trx"
+            cat out.trx
 workflows:
   version: 2
   build_and_test:
