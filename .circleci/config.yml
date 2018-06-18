@@ -14,7 +14,7 @@ jobs:
       - run:
           name: Test
           command: |
-            echo "export ASPNETCORE_ENVIRONMENT=Test" >> $BASH_ENV
+            ASPNETCORE_ENVIRONMENT=Test
             echo $ASPNETCORE_ENVIRONMENT
             #dotnet test banana.tests/banana.tests.csproj --logger "trx;LogFileName=out.trx" > sat.txt
             #cat banana.tests/TestResults/out.trx
