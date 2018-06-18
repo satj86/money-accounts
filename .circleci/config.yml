@@ -23,7 +23,7 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      #- build
+      #- buxild
       - test
 # # # version: 2
 # # # jobs:
