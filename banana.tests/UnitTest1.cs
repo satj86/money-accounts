@@ -6,8 +6,11 @@ namespace banana.tests
     public class UnitTest1
     {
         [TestMethod]
-        public void TestMethod1()
+        public void Is_test_environment()
         {
+            var env = System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+            Assert.AreEqual("Test", env);
         }
     }
 }
