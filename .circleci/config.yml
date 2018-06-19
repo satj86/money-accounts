@@ -16,7 +16,7 @@ jobs:
           command: |
             ASPNETCORE_ENVIRONMENT=Test
             echo $ASPNETCORE_ENVIRONMENT
-            dotnet test banana.tests/banana.tests.csproj --logger "trx;LogFileName=out.trx" > sat.txt
+            dotnet test banana.tests/banana.tests.csproj --settings test.runsettings --logger "trx;LogFileName=out.trx" > sat.txt
             cat banana.tests/TestResults/out.trx
             #cat sat.txt
 workflows:
