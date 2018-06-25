@@ -5,13 +5,13 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Money.Accounts.Parsing.Tests
 {
     [TestClass]
-    public class HsbcAdvanceStatementParserTests
+    public class HsbcCreditCardStatementParserTests
     {
         [TestMethod]
-        public void Hsbc_Advance_parser_parses_statement_entries()
+        public void Hsbc_Credit_Card_parser_parses_statement_entries()
         {
             //Arrange
-            const string statemtentPath = "C:\\SampleStatements\\TransHist regular.csv";
+            const string statemtentPath = "C:\\SampleStatements\\TransHist - cc.csv";
             IStatementParser parser = new HsbcAdvanceStatementParser();
 
             //Act
@@ -19,11 +19,11 @@ namespace Money.Accounts.Parsing.Tests
 
             //Assert
             DateTime date;
-            DateTime.TryParse("19/06/2018", out date);
+            DateTime.TryParse("23/06/2018", out date);
 
             Assert.AreEqual(date, statementEntries.First().Date);
-            Assert.AreEqual("F MARTINA                Metal Fest                BP", statementEntries.First().Description);
-            Assert.AreEqual(-42.00m, statementEntries.First().Amount);
+            Assert.AreEqual("CONNIBURROW            MILTON KEYNES GB", statementEntries.First().Description);
+            Assert.AreEqual(-64.00m, statementEntries.First().Amount);
         }
     }
 }
