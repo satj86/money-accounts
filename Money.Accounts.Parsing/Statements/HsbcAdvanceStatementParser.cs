@@ -27,7 +27,6 @@ namespace Money.Accounts.Parsing.Statements
             });
 
             return statementEntries;
-            //
         }
     }
 
