@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Money.Accounts.Parsing.Model;
 
-namespace Money.Accounts.Parsing
+namespace Money.Accounts.Parsing.Statements
 {
     public class NatwestCurrentStatementParser : IStatementParser
     {

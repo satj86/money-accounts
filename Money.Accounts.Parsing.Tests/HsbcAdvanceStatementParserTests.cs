@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Money.Accounts.Parsing.Statements;
 
 namespace Money.Accounts.Parsing.Tests
 {
