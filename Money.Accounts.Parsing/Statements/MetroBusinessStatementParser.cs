@@ -1,42 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Text;
 using Money.Accounts.Parsing.Model;
 
 namespace Money.Accounts.Parsing.Statements
 {
     public class MetroBusinessStatementParser : IStatementParser
     {
+        private readonly ICsvFileReader _csvFileReader;
+
+        public MetroBusinessStatementParser(ICsvFileReader csvFileReader)
+        {
+            _csvFileReader = csvFileReader;
+        }
+
         public IEnumerable<StatementEntry> ReadStatement(string path)
         {
-            //Date,Reference,Transaction Type,Money In, Money Out,Balance
+            const string headerRow = "Date,Reference,Transaction Type,Money In, Money Out,Balance";
 
-            using (var reader = new StreamReader(path))
-            {
-                while (!reader.EndOfStream)
-                {
-                    var line = reader.ReadLine();
-                    if (line.Equals(string.Empty) || line.StartsWith("Date", StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        continue;
-                    }
-                    var values = line.Split(',');
+            var statementEntries = _csvFileReader.MapRows<StatementEntry>(path, headerRow, (statementEntry, rowValues) => {
+                DateTime date;
+                DateTime.TryParse(rowValues[0], out date);
 
-                    DateTime date;
-                    DateTime.TryParse(values[0], out date);
+                var moneyIn = Convert.ToDecimal(rowValues[3]);
+                var moneyOut = Convert.ToDecimal(rowValues[4]);
 
-                    var moneyIn = Convert.ToDecimal(values[3]);
-                    var moneyOut = Convert.ToDecimal(values[4]);
+                statementEntry.Date = date;
+                statementEntry.Description = rowValues[1];
+                statementEntry.Amount = moneyIn > 0 ? moneyIn : -moneyOut;
+            });
 
-                    yield return new StatementEntry
-                    {
-                        Date = date,
-                        Description = values[1],
-                        Amount = moneyIn > 0 ? moneyIn : -moneyOut
-                    };
-                }
-            }
+            return statementEntries;      
         }
     }
 }

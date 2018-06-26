@@ -1,54 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text.RegularExpressions;
 using Money.Accounts.Parsing.Model;
 
 namespace Money.Accounts.Parsing.Statements
 {
     public class NatwestCurrentStatementParser : IStatementParser
     {
+        private readonly ICsvFileReader _csvFileReader;
+
+        public NatwestCurrentStatementParser(ICsvFileReader csvFileReader)
+        {
+            _csvFileReader = csvFileReader;
+        }
+
         public IEnumerable<StatementEntry> ReadStatement(string path)
         {
-            using (var reader = new StreamReader(path))
-            {
-                while (!reader.EndOfStream)
-                {
-                    var line = reader.ReadLine();
-                    if (line.Equals(string.Empty) || line.StartsWith("Date", StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        continue;
-                    }
-                    string desc = "";
-                    
-                    string pattern = @"\""\'[A-Za-z0-9 \/\-\,]*\""";
+            const string headerRow = "Date, Type, Description, Value, Balance, Account Name, Account Number";
+            const string treatAsColumnPattern = @"\""\'[A-Za-z0-9 \/\-\,]*\""";
 
-                    Regex rgx = new Regex(pattern, RegexOptions.IgnoreCase);
-                    MatchCollection matches = rgx.Matches(line);
+            var statementEntries = _csvFileReader.MapRows<StatementEntry>(path, headerRow, treatAsColumnPattern, (statementEntry, rowValues) => {
+                DateTime date;
+                DateTime.TryParse(rowValues[0], out date);
 
-                    int i = -1;
-                    var lineC = line;
-                    var list = new List<string>();
-                    foreach(Match m in matches)
-                    {
-                        lineC = lineC.Replace(m.Value, (++i).ToString());
-                        list.Add(m.Value);
-                    }
+                var amountString = rowValues[3].Replace("\"", "");
 
-                    var values = lineC.Split(',');
+                statementEntry.Date = date;
+                statementEntry.Description =  rowValues[2].Replace("\"", "").Replace("'", "");
+                statementEntry.Amount = Convert.ToDecimal(amountString);               
+            });
 
-                    DateTime date;
-                    DateTime.TryParse(values[0], out date);
-
-                    var amountString = values[3].Replace("\"", "");
-                    yield return new StatementEntry {
-                        Date = date,
-                        Description = list[Convert.ToInt32(values[2])].Replace("\"","").Replace("'",""),
-                        Amount = Convert.ToDecimal(amountString)
-                    };
-                }
-            }
+            return statementEntries;
         }
     }
 

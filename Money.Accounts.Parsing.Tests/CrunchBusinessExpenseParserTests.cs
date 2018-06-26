@@ -13,28 +13,12 @@ namespace Money.Accounts.Parsing.Tests
         {
             //Arrange
             const string statementPath = "C:\\SampleStatements\\Expenses.csv";
-            IBusinessExpenseParser parser = new CrunchBusinessExpenseParser();
+            IBusinessExpenseParser parser = new CrunchBusinessExpenseParser(new CsvFileReader());
 
             //Act
             var expenses = parser.ReadExpenses(statementPath);
 
             //Assert
-            /*
- * 0  Date,
- * 1  Supplier - Ref,
- * 2  Recharge to,
- * 3  Net amount,
- * 4  VAT amount,
- * 5  Gross amount,
- * 6  Payment(s) amount,
- * 7  Combined,
- * 8  Payment method(s),
- * 9  Credit note(s) amount,
- * 10 Payment status,
- * 11 Attachments,
- * 12 Line item(s) description
- */
-            //21/06/2018,Food - Breakfast,N/A,2.37,0.48,2.85,2.85,false,Paid by director personally,0.00,Paid,1,Breakfast
             DateTime date;
             DateTime.TryParse("21/06/2018", out date);
 

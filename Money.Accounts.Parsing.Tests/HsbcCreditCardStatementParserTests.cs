@@ -13,7 +13,7 @@ namespace Money.Accounts.Parsing.Tests
         {
             //Arrange
             const string statemtentPath = "C:\\SampleStatements\\TransHist - cc.csv";
-            IStatementParser parser = new HsbcCreditCardStatementParser();
+            IStatementParser parser = new HsbcCreditCardStatementParser(new CsvFileReader());
 
             //Act
             var statementEntries = parser.ReadStatement(statemtentPath);

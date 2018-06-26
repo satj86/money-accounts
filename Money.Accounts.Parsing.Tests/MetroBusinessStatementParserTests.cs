@@ -13,7 +13,7 @@ namespace Money.Accounts.Parsing.Tests
         {
             //Arrange
             const string statemtentPath = "C:\\SampleStatements\\Transaction_24.06.2018.csv";
-            IStatementParser parser = new MetroBusinessStatementParser();
+            IStatementParser parser = new MetroBusinessStatementParser(new CsvFileReader());
 
             //Act
             var statementEntries = parser.ReadStatement(statemtentPath);

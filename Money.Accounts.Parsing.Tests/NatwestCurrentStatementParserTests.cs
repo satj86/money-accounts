@@ -13,7 +13,7 @@ namespace Money.Accounts.Parsing.Tests
         {
             //Arrange
             const string statemtentPath = "C:\\SampleStatements\\JOOTLESSSTU0934526706-20180624.csv";
-            IStatementParser parser = new NatwestCurrentStatementParser();
+            IStatementParser parser = new NatwestCurrentStatementParser(new CsvFileReader());
 
             //Act
             var statementEntries = parser.ReadStatement(statemtentPath);

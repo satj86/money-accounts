@@ -1,34 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using Money.Accounts.Parsing.Model;
 
 namespace Money.Accounts.Parsing.Statements
 {
     public class HsbcCreditCardStatementParser : IStatementParser
     {
+        private readonly ICsvFileReader _csvFileReader;
+
+        public HsbcCreditCardStatementParser(ICsvFileReader csvFileReader)
+        {
+            _csvFileReader = csvFileReader;
+        }
+
         public IEnumerable<StatementEntry> ReadStatement(string path)
         {
-            using (var reader = new StreamReader(path))
+            var statementEntries = _csvFileReader.MapRows<StatementEntry>(path, (statementEntry, rowValues) =>
             {
-                while (!reader.EndOfStream)
-                {
-                    var line = reader.ReadLine();
-                    var values = line.Split(',');
+                DateTime date;
+                DateTime.TryParse(rowValues[0], out date);
 
-                    DateTime date;
-                    DateTime.TryParse(values[0], out date);
+                statementEntry.Date = date;
+                statementEntry.Description = rowValues[1];
 
-                    var amountString = values[2].Replace("\"", "");
+                var amountString = rowValues[2].Replace("\"", "");
+                statementEntry.Amount = Convert.ToDecimal(amountString);
+            });
 
-                    yield return new StatementEntry
-                    {
-                        Date = date,
-                        Description = values[1],
-                        Amount = Convert.ToDecimal(amountString)
-                    };
-                }
-            }
+            return statementEntries;
         }
     }
 }
