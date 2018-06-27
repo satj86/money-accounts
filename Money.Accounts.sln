@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Money.Accounts", "Money.Accounts\Money.Accounts.csproj", "{7E1DC9A3-AA7D-4E9D-BE85-6E8BF435515F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Money.Accounts", "Money.Accounts\Money.Accounts.csproj", "{7E1DC9A3-AA7D-4E9D-BE85-6E8BF435515F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Money.Accounts.Parsing", "Money.Accounts.Parsing\Money.Accounts.Parsing.csproj", "{CC164356-F8B1-48E8-87C1-5696F1AB979E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Money.Accounts.Parsing", "Money.Accounts.Parsing\Money.Accounts.Parsing.csproj", "{CC164356-F8B1-48E8-87C1-5696F1AB979E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{13C3F5C7-4D91-4F9C-8A9F-527479DC6C0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Money.Accounts.Parsing.Tests", "Money.Accounts.Parsing.Tests\Money.Accounts.Parsing.Tests.csproj", "{F48E0B6F-52A3-4814-8728-726C96385FBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Money.Accounts.Parsing.Tests", "Money.Accounts.Parsing.Tests\Money.Accounts.Parsing.Tests.csproj", "{F48E0B6F-52A3-4814-8728-726C96385FBD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Money.Accounts.Data", "Money.Accounts.Data\Money.Accounts.Data.csproj", "{8F6E7851-EF7B-4B0A-99B9-4A265E0B5F6B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{F48E0B6F-52A3-4814-8728-726C96385FBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F48E0B6F-52A3-4814-8728-726C96385FBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F48E0B6F-52A3-4814-8728-726C96385FBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F6E7851-EF7B-4B0A-99B9-4A265E0B5F6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F6E7851-EF7B-4B0A-99B9-4A265E0B5F6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F6E7851-EF7B-4B0A-99B9-4A265E0B5F6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F6E7851-EF7B-4B0A-99B9-4A265E0B5F6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
