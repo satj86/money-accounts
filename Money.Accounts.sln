@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Money.Accounts.Parsing.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Money.Accounts.Data", "Money.Accounts.Data\Money.Accounts.Data.csproj", "{8F6E7851-EF7B-4B0A-99B9-4A265E0B5F6B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Money.Accounts.Domain", "Money.Accounts.Domain\Money.Accounts.Domain.csproj", "{559CF95B-0B86-42E9-9B6F-D6E4EF360774}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{8F6E7851-EF7B-4B0A-99B9-4A265E0B5F6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F6E7851-EF7B-4B0A-99B9-4A265E0B5F6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F6E7851-EF7B-4B0A-99B9-4A265E0B5F6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{559CF95B-0B86-42E9-9B6F-D6E4EF360774}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{559CF95B-0B86-42E9-9B6F-D6E4EF360774}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{559CF95B-0B86-42E9-9B6F-D6E4EF360774}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{559CF95B-0B86-42E9-9B6F-D6E4EF360774}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
