@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Money.Accounts.Domain\Money.Accounts.Domain.csproj" />
+    <ProjectReference Include="..\Money.Accounts.Parsing\Money.Accounts.Parsing.csproj" />
   </ItemGroup>
 
 </Project>
