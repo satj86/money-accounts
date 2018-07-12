@@ -11,15 +11,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{13C3F5C7
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Money.Accounts.Parsing.Tests", "Money.Accounts.Parsing.Tests\Money.Accounts.Parsing.Tests.csproj", "{F48E0B6F-52A3-4814-8728-726C96385FBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Money.Accounts.Data", "Money.Accounts.Data\Money.Accounts.Data.csproj", "{8F6E7851-EF7B-4B0A-99B9-4A265E0B5F6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Money.Accounts.Data", "Money.Accounts.Data\Money.Accounts.Data.csproj", "{8F6E7851-EF7B-4B0A-99B9-4A265E0B5F6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Money.Accounts.Domain", "Money.Accounts.Domain\Money.Accounts.Domain.csproj", "{559CF95B-0B86-42E9-9B6F-D6E4EF360774}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Money.Accounts.Domain", "Money.Accounts.Domain\Money.Accounts.Domain.csproj", "{559CF95B-0B86-42E9-9B6F-D6E4EF360774}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Money.Accounts.Domain.Tests", "Money.Accounts.Domain.Tests\Money.Accounts.Domain.Tests.csproj", "{01BA665F-0C07-4743-8561-5F9D5DA77947}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Money.Accounts.Domain.Tests", "Money.Accounts.Domain.Tests\Money.Accounts.Domain.Tests.csproj", "{01BA665F-0C07-4743-8561-5F9D5DA77947}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Money.Accounts.Domain.Service", "Money.Accounts.Domain.Service\Money.Accounts.Domain.Service.csproj", "{CEE0DE75-B15A-4915-9FAB-87135F2385D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Money.Accounts.Domain.Service", "Money.Accounts.Domain.Service\Money.Accounts.Domain.Service.csproj", "{CEE0DE75-B15A-4915-9FAB-87135F2385D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Money.Accounts.Domain.Service.Tests", "Money.Accounts.Domain.Service.Tests\Money.Accounts.Domain.Service.Tests.csproj", "{F02BD5A0-DFF7-4E13-9A72-CBDE897D9E79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Money.Accounts.Domain.Service.Tests", "Money.Accounts.Domain.Service.Tests\Money.Accounts.Domain.Service.Tests.csproj", "{F02BD5A0-DFF7-4E13-9A72-CBDE897D9E79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Money.Accounts.Api", "Money.Accounts.Api\Money.Accounts.Api.csproj", "{79228350-74ED-483F-A05C-D2DBD9F617D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +61,10 @@ Global
 		{F02BD5A0-DFF7-4E13-9A72-CBDE897D9E79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F02BD5A0-DFF7-4E13-9A72-CBDE897D9E79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F02BD5A0-DFF7-4E13-9A72-CBDE897D9E79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79228350-74ED-483F-A05C-D2DBD9F617D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79228350-74ED-483F-A05C-D2DBD9F617D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79228350-74ED-483F-A05C-D2DBD9F617D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79228350-74ED-483F-A05C-D2DBD9F617D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
