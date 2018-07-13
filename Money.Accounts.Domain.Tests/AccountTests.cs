@@ -33,7 +33,7 @@ namespace Money.Accounts.Domain.Tests
 
             var statementEntry = new StatementEntry { Amount = 50m };
             //Act
-            account.AddTransaction(statementEntry);
+            account.AddTransaction(statementEntry.Date, statementEntry.Description, statementEntry.Amount);
 
             //Assert
             Assert.AreEqual(23393.76m, account.Transactions[1].Balance);
@@ -49,7 +49,7 @@ namespace Money.Accounts.Domain.Tests
 
             var statementEntry = new StatementEntry { Amount = 50m };
             //Act
-            account.AddTransaction(statementEntry);
+            account.AddTransaction(statementEntry.Date, statementEntry.Description, statementEntry.Amount);
 
             //Assert
             Assert.AreEqual(23393.76m, account.Balance);
@@ -68,9 +68,9 @@ namespace Money.Accounts.Domain.Tests
             var statementEntryC = new StatementEntry { Date = DateTime.Today, Amount = 5m };
 
             //Act
-            account.AddTransaction(statementEntryA);
-            account.AddTransaction(statementEntryB);
-            account.AddTransaction(statementEntryC);
+            account.AddTransaction(statementEntryA.Date, statementEntryA.Description, statementEntryA.Amount);
+            account.AddTransaction(statementEntryB.Date, statementEntryB.Description, statementEntryB.Amount);
+            account.AddTransaction(statementEntryC.Date, statementEntryC.Description, statementEntryC.Amount);
 
             //Assert
             Assert.AreEqual(1, account.Transactions[1].SequenceNumber);
@@ -102,7 +102,7 @@ namespace Money.Accounts.Domain.Tests
             };
 
             //Act
-            account.AddTransaction(statementEntryA);
+            account.AddTransaction(statementEntryA.Date, statementEntryA.Description, statementEntryA.Amount);
 
             //Assert
             Assert.AreEqual(statementEntryA.Amount, account.Transactions[1].Amount);

@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Money.Accounts.Domain.Tests
+namespace Money.Accounts.Domain
 {
-    internal class Transaction
+    public class Transaction
     {
         public decimal Balance { get; internal set; }
         public string Description { get; internal set; }

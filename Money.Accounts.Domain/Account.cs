@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using Money.Accounts.Parsing.Model;
 
-namespace Money.Accounts.Domain.Tests
+namespace Money.Accounts.Domain
 {
-    internal class Account
+    public class Account
     {
         public List<Transaction> Transactions { get; }
 
@@ -31,16 +31,16 @@ namespace Money.Accounts.Domain.Tests
             });
         }
 
-        internal void AddTransaction(StatementEntry statementEntry)
+        public void AddTransaction(DateTime date, string description, decimal amount)
         {
-            var newBalance = Balance + statementEntry.Amount;
+            var newBalance = Balance + amount;
             var newSequenceNumber = Transactions.Max(x => x.SequenceNumber) + 1;
 
             var transaction = new Transaction
             {
-                Date = statementEntry.Date,
-                Description = statementEntry.Description,
-                Amount = statementEntry.Amount,
+                Date = date,
+                Description = description,
+                Amount = amount,
                 Balance = newBalance,
                 SequenceNumber = newSequenceNumber
             };
